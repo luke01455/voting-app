@@ -66,3 +66,42 @@ export default class Chat extends Component {
           );
       }
   }
+
+
+    // function getSubCollection() {
+  //   setLoading(true);
+  //   dbStore
+  //     .collection("pages")
+  //     .doc(currentPage)
+  //     .collection("polls")
+  //     .onSnapshot((querySnapshot) => {
+  //       const items = []
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(doc.data(), "subcolData")
+  //         items.push(doc.data())
+  //       });
+  //       setSubCollection(items)
+  //       setLoading(false)
+  //     });
+  // }
+
+
+      //  const genId = uuidv4()
+    //   const cityRef = dbStore.collection('pages').doc(currentPage).collection('polls').doc(genId)
+
+    //   cityRef.set({
+    //     question: 'Will this subreddit take off?',
+    //     yay: 0,
+    //     nay: 0,
+    //     id: genId
+    // }, { merge: true })
+
+      // get database stuff standard
+  // function getPages2() {
+  //   setLoading(true)
+  //     ref.get().then((item) => {
+  //       const items = item.docs.map((doc) => doc.data())
+  //       setPages(items)
+  //       setLoading(false)
+  //     })
+  // }

@@ -12,15 +12,6 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
-export const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-      unsubscribe();
-      resolve(userAuth);
-    }, reject)
-  })
-}
-
   firebase.initializeApp(firebaseConfig);
   export const auth = firebase.auth;
   export const db = firebase.database();

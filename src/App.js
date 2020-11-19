@@ -14,11 +14,11 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
 
   useEffect (() => {
-
     auth().onAuthStateChanged((user) => {
       if (user) {
   setAuthenticated(true)
   console.log(auth().currentUser, "test")
+
   } else {
   setAuthenticated(false)
 }
@@ -32,7 +32,6 @@ const App = () => {
                  <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route path="/" component={HomePage} />
-
             <Route
               exact
               path="/signup"

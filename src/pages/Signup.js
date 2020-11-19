@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { signup, signInWithGoogle  } from '../helpers/auth';
+import { dbStore, auth } from "../services/firebase";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -20,6 +21,12 @@ export default class SignUp extends Component {
   googleSignIn = async () =>  {
     try {
       await signInWithGoogle();
+      const userDetails = {
+        displayName: auth().currentUser.displayName,
+        id: auth().currentUser.uid,
+        email: auth().currentUser.email
+      }
+      this.addUserToTable(userDetails)
     } catch (error) {
       this.setState({ error: error.message });
     }
@@ -29,9 +36,27 @@ export default class SignUp extends Component {
     this.setState({ error: '' });
     try {
       await signup(this.state.email, this.state.password);
+
+      const userDetails = {
+        displayName: auth().currentUser.displayName,
+        id: auth().currentUser.uid,
+        email: auth().currentUser.email
+      }
+      this.addUserToTable(userDetails)
     } catch (error) {
       this.setState({ error: error.message });
     }
+  }
+
+  addUserToTable = (user) => {
+    dbStore
+      .collection("users")
+      //.doc() use if for some reason you want that firestore generates the id
+      .doc(user.id)
+      .set(user)
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {

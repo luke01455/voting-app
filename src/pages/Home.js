@@ -25,27 +25,19 @@ function Home() {
       setLoading(false)
     })
   }
-  // get database stuff standard
-  // function getPages2() {
-  //   setLoading(true)
-  //     ref.get().then((item) => {
-  //       const items = item.docs.map((doc) => doc.data())
-  //       setPages(items)
-  //       setLoading(false)
-  //     })
-  // }
+
   useEffect (() => {
     getPages()
     //getPages2()
-    // auth().onAuthStateChanged((user) => {
-    //         if (user) {
-    //     setLoading(false)
-    //     setAuthenticated(true)
-    //     } else {
-    //     setLoading(false)
-    //     setAuthenticated(false)
-    //   }
-    // })
+    auth().onAuthStateChanged((user) => {
+            if (user) {
+        setLoading(false)
+        setAuthenticated(true)
+        } else {
+        setLoading(false)
+        setAuthenticated(false)
+      }
+    })
   }, [])
 
   function addPage(newPage) {
